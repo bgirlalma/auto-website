@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/auto-website/static/css/main.7acaea2f.css",
+    "main.js": "/auto-website/static/js/main.07d3183d.js",
+    "index.html": "/auto-website/index.html",
+    "main.7acaea2f.css.map": "/auto-website/static/css/main.7acaea2f.css.map",
+    "main.07d3183d.js.map": "/auto-website/static/js/main.07d3183d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.07d3183d.js"
+  ]
+}
