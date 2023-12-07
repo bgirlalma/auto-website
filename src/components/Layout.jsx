@@ -1,21 +1,44 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { GlobalStyled } from "globalStyled";
 
+import styled from "styled-components";
+
+const StyledWrapp = styled.ul`
+display: flex;
+padding-left: 20px;
+padding-top: 20px;
+`;
+
+const List = styled.li`
+  margin-right: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 0.9;
+  color: #121417;
+`;
+
+const LList = styled.li`
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 0.9;
+  color: #121417;
+`;
+
 const Layout = () => {
     return (
       <div>
         <nav>
-          <ul>
-            <li>
+          <StyledWrapp>
+            <List>
               <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
+            </List>
+            <List>
               <NavLink to="/catalog">Catalog</NavLink>
-            </li>
-            <li>
+            </List>
+            <LList>
               <NavLink to="/favorites">Favorits</NavLink>
-            </li>
-          </ul>
+            </LList>
+          </StyledWrapp>
         </nav>
         <GlobalStyled />
         <Outlet/>
