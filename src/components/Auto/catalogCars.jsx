@@ -12,7 +12,16 @@ import {
   getIsLoading,
 } from "../../redux/Auto/selector";
 
-import { Title} from "./catalogCars.styled";
+import {
+  Title,
+  FlexContainer,
+  TitleCar,
+  Desc,
+  FlexTitle,
+  TitleTree,
+  FlextTitleBox,
+  DescMachine,
+} from "./catalogCars.styled";
 
 const img = 'https://collection.cloudinary.com/dyyssd0kc/f0c5e33510383ecff3716b2f74cabceb';
 
@@ -55,33 +64,32 @@ const CatalogCars = () => {
   return (
     <div>
       <Title>Каталог Авто</Title>
-      <ul>
+      <FlexContainer>
         {cars.slice(0, displayCount).map((car) => (
           <li key={car.id}>
-            <h2>{car.make}</h2>
-            <img src={img} alt={`${car.make} ${car.model}`} width="300px" height="200px" />
-            <p>{`${car.year} ${car.make} ${car.model}`}</p>
-            <p>Type: {car.type}</p>
-            <p>Description: {car.description}</p>
-            <p>Fuel Consumption: {car.fuelConsumption}</p>
-            <p>Engine Size: {car.engineSize}</p>
-            <p>
-              Accessories:{" "}
-              {Array.isArray(car.accessories)
-                ? car.accessories.join(", ")
-                : "N/A"}
-            </p>
-            <p>
-              Functionalities:{" "}
-              {Array.isArray(car.functionalities)
-                ? car.functionalities.join(", ")
-                : "N/A"}
-            </p>
-            <p>Rental Price: {car.rentalPrice} per hour</p>
-            <p>Rental Company: {car.rentalCompany}</p>
-            <p>Address: {car.address}</p>
-            <p>Rental Conditions: {car.rentalConditions}</p>
-            <p>Mileage: {car.mileage}</p>
+            <img
+              src={img}
+              alt={`${car.make} ${car.model}`}
+              width="300px"
+              height="200px"
+            />
+
+            <FlexTitle>
+              <TitleCar>{`${car.make},`}</TitleCar>
+
+              <Desc>{`${car.model}`}</Desc>
+
+              <TitleTree>{`${car.rentalPrice}`}</TitleTree>
+            </FlexTitle>
+
+            <FlextTitleBox>
+              <DescMachine>{`${car.city} | `}</DescMachine>
+              <DescMachine>{`${car.country} | `}</DescMachine>
+              <DescMachine>{`${car.rentalConditions} | `}</DescMachine>
+              <DescMachine>{`${car.accessories} | `}</DescMachine>
+              <DescMachine>{`${car.functionalities} | `}</DescMachine>
+              <DescMachine>{`${car.mileage} | `}</DescMachine>
+            </FlextTitleBox>
 
             <button
               onClick={() => favoriteToggle(car.id)}
@@ -97,7 +105,7 @@ const CatalogCars = () => {
             <a href={`tel:+380730000000`}>Rental car</a>
           </li>
         ))}
-      </ul>
+      </FlexContainer>
       {filteredCars.length > displayCount && (
         <LoadMore onClick={handleButtonLoadMore} />
       )}
