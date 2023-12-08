@@ -7,3 +7,4 @@ import styled from "styled-components";
   color: #121417;
   margin-top: 20px;
 `;
+

@@ -1,20 +1,20 @@
 import LoadMore from "components/Button/loadMore";
-import FormCars from "components/Form/formCars";
-import Modal from "components/Modal/carsModal";
+import  Modal  from "../Modal/carsModal";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleFavorite } from "redux/Auto/Slice/favoriteSlice";
-import { setFilter } from "redux/Auto/Slice/filterSlice";
-import { openModal } from "redux/Auto/Slice/modalSlise";
-import { fetchCars } from "redux/Auto/autoOperation";
+import { toggleFavorite } from "../../redux/Auto/Slice/favoriteSlice";
+import { openModal } from "../../redux/Auto/Slice/modalSlise";
+import { fetchCars } from "../../redux/Auto/autoOperation";
 import {
   getCars,
   getError,
   getFiltered,
   getIsLoading,
-} from "redux/Auto/selector";
+} from "../../redux/Auto/selector";
 
-import { Title } from "./catalogCars.styled";
+import { Title} from "./catalogCars.styled";
+
+const img = 'https://collection.cloudinary.com/dyyssd0kc/f0c5e33510383ecff3716b2f74cabceb';
 
 const CatalogCars = () => {
   const dispatch = useDispatch();
@@ -43,10 +43,6 @@ const CatalogCars = () => {
     dispatch(openModal());
   };
 
-  const filterCars = (selectedMake) => {
-    dispatch(setFilter(selectedMake));
-  };
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -59,19 +55,28 @@ const CatalogCars = () => {
   return (
     <div>
       <Title>Каталог Авто</Title>
-      <FormCars onChange={filterCars} />
       <ul>
         {cars.slice(0, displayCount).map((car) => (
           <li key={car.id}>
             <h2>{car.make}</h2>
-            <img src={car.img} alt={`${car.make} ${car.model}`} />
+            <img src={img} alt={`${car.make} ${car.model}`} width="300px" height="200px" />
             <p>{`${car.year} ${car.make} ${car.model}`}</p>
             <p>Type: {car.type}</p>
             <p>Description: {car.description}</p>
             <p>Fuel Consumption: {car.fuelConsumption}</p>
             <p>Engine Size: {car.engineSize}</p>
-            <p>Accessories: {car.accessories.join(", ")}</p>
-            <p>Functionalities: {car.functionalities.join(", ")}</p>
+            <p>
+              Accessories:{" "}
+              {Array.isArray(car.accessories)
+                ? car.accessories.join(", ")
+                : "N/A"}
+            </p>
+            <p>
+              Functionalities:{" "}
+              {Array.isArray(car.functionalities)
+                ? car.functionalities.join(", ")
+                : "N/A"}
+            </p>
             <p>Rental Price: {car.rentalPrice} per hour</p>
             <p>Rental Company: {car.rentalCompany}</p>
             <p>Address: {car.address}</p>

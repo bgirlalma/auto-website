@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL =
-    "https://65719d5dd61ba6fcc01317a9.mockapi.io";
+axios.defaults.baseURL = "https://65719d5dd61ba6fcc01317a9.mockapi.io";
   
-export const fetchCars = createAsyncThunk("car/fetchCars", async (_, thunkAPI) => {
+export const fetchCars = createAsyncThunk("cars/fetchCars", async (_, thunkAPI) => {
   try {
-    const res = await axios.get("/car");
+    const res = await axios.get("/cars/catalog");
     console.log("Data received:", res.data);
     return res.data;
   } catch (error) {
@@ -15,9 +14,9 @@ export const fetchCars = createAsyncThunk("car/fetchCars", async (_, thunkAPI) =
 });
 
 
-export const addCars = createAsyncThunk("car/addCars", async (id, thunkAPI) => {
+export const addCars = createAsyncThunk("cars/addCars", async (id, thunkAPI) => {
   try {
-    const res = await axios.post(`/car/${id}`);
+    const res = await axios.post(`/cars/${id}`);
     console.log("Data received:", res.data);
     return res.data;
   } catch (error) {
@@ -25,9 +24,9 @@ export const addCars = createAsyncThunk("car/addCars", async (id, thunkAPI) => {
   }
 });
 
-export const deleteCar = createAsyncThunk("car/deleteCar", async (id, thunkAPI) => {
+export const deleteCar = createAsyncThunk("cars/deleteCar", async (id, thunkAPI) => {
     try {
-        const res = await axios.delete(`/car/${id}`)
+        const res = await axios.delete(`/cars/${id}`)
         console.log("Delete:", res.data);
         return res.data;
     } catch (error) {
