@@ -15,31 +15,42 @@ padding-right: 115px;
 `;
 
 export const FlexContainer = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 29px;
 `;
 
 export const ButtonLikeCards = styled.button`
-width: 18px;
-height: 18px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
   border: none;
   background-color: inherit;
+  cursor: pointer;
 `;
 
 export const FlexTitle = styled.div`
   display: flex;
   align-items: center;
+  max-width: 274px;
 `;
 
 export const Img = styled.img`
-  width: 270px;
+  width: 274px;
+  height: 268px;
   border-radius: 12px;
   background-size: cover;
 `;
 
 export const CardList = styled.li`
-max-width: 274px;
+  position: relative;
+  flex-basis: calc(25% - 29px);
+  box-sizing: border-box;
+  margin-bottom: 50px;
+  max-width: 274px;
 `;
 
 export const TitleCar = styled.h2`
@@ -78,10 +89,8 @@ export const TitleTree = styled.h2`
 `;
 
 export const FlextTitleBox = styled.div`
-  width: auto;
   display: flex;
-  align-items: center;
-  padding-right: 15px;
+  flex-wrap: wrap;
 `;
 
 export const DescMachine = styled.p`
@@ -94,12 +103,51 @@ export const DescMachine = styled.p`
 `;
 
 export const ButtonCards = styled.button`
+  cursor: pointer;
   width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px;
+ height: 48px;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  background: #3470ff;
+  background-color: #3470ff;
   margin-top: 28px;
+  border: none;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--White, #fff);
+`;
+
+export const RentlaButton = styled.button`
+  color: #3470ff;
+  margin-top: 20px;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration-line: underline;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+`;
+
+export const FilterButton = styled.button`
+  cursor: pointer;
+  display:flex;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #3470ff;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration-line: underline;
+  border: none;
+  background-color: inherit;
 `;

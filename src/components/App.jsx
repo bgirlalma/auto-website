@@ -8,10 +8,11 @@ export const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Layout/>}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />}></Route>
           <Route path="/catalog" element={<Catalog />}></Route>
           <Route path="/favorites" element={<Favorite />}></Route>
+          {/* <Route path="*" element={<Navigate to="/" />} /> */}
         </Route>
       </Routes>
     </div>

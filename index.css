@@ -2,8 +2,13 @@ body{
     grid-template-columns: repeat(3, 1fr);
     background-color: #a8dcef;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     border-radius: 12px;
     background-size: cover;
     flex-direction: column;
+    cursor: pointer;
+    border-right: #0f1010;
+    border-top-right-radius: 12px;
+    position: absolute;
+    position: relative;
 }

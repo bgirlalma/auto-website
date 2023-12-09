@@ -95,10 +95,10 @@ const StyledFromTo = styled(Field)`
   display: flex;
   height: 48px;
   padding-left: 20px;
-  border-radius: 14px;
+  border-radius: 14px 0 14px 14px;
   background-color: #a8dcef;
   border: none;
-  margin-right: -6px;
+  margin-right: -12px;
 
   font-size: 18px;
   font-style: normal;
@@ -112,7 +112,7 @@ const StyledFromToTwo = styled(Field)`
   display: flex;
   height: 48px;
   padding-left: 20px;
-  border-radius: 14px;
+  border-radius: 0 14px 14px 0;
   background-color: #a8dcef;
   border: none;
   margin-right: 20px;
@@ -122,6 +122,7 @@ const StyledFromToTwo = styled(Field)`
   font-weight: 500;
   line-height: 20px;
   color: #121417;
+  border-left: 3px solid rgba(138, 138, 137, 0.2);
 `;
 
 const StyledButton = styled.button`
@@ -150,9 +151,6 @@ const CarsLabel = styled.label`
   color: #8a8a89;
   margin-bottom: 10px;
 `;
-
-
-
 
 const FormCars = () => {
   return (
