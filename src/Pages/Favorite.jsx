@@ -36,7 +36,7 @@ const Favorite = () => {
   };
 
   return (
-    <div></div>
+    <div>
       <h2>Favorite Cars</h2>
       {favoriteCars.map((car) => (
         <div key={car.id}>
