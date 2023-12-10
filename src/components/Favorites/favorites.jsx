@@ -13,9 +13,7 @@ const Favorite = () => {
    return (
      <>
        <ul
-         className={`mb-[100px] pt-[20px] md:pt-[50px]  flex justify-center gap-[16px] sm:gap-[16px] mx-auto ${
-           isFav ? "md:justify-start" : "md:justify-center"
-         }  md:items-center flex-wrap md:gap-[29px]`}
+
        >
          {favorites.map((car) => {
            const { id } = car;
