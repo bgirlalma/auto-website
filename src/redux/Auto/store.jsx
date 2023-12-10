@@ -9,9 +9,9 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { carsReduser } from "./Slice/autoSlice";
+import { carsReducer } from "./Slice/autoSlice";
 import { configureStore } from "@reduxjs/toolkit";
-import {favoritesReducer } from "./Slice/favoriteSlice";
+import { favoritesReducer } from "../favorites/favoriteSlice";
 import { modalReducer } from "./Slice/modalSlise";
 import { filterReducer } from "./Slice/filterSlice";
 
@@ -20,7 +20,7 @@ const persistConfig = {
   storage,
 };
 
-const CarsPersist = persistReducer(persistConfig, carsReduser);
+const CarsPersist = persistReducer(persistConfig, carsReducer);
 
 export const store = configureStore({
   reducer: {

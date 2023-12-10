@@ -29,4 +29,4 @@ const carsSlise = createSlice({
   },
 });
 
-export const carsReduser = carsSlise.reducer;
+export const carsReducer = carsSlise.reducer;

@@ -1,26 +1,18 @@
 import styled from "styled-components";
 
-export const Containet = styled.div`
-padding-left: 115px;
-padding-right: 115px;
-`
-
-export const Title = styled.h2`
- display: flex;
- justify-content: center;
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 0.9;
-  color: #121417;
-  margin-top: 20px;
-  margin-bottom: 20px;
-`;
-
-export const FlexContainer = styled.ul`
+export const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   column-gap: 29px;
+`;
+
+export const CardList = styled.div`
+  position: relative;
+  flex-basis: calc(25% - 29px);
+  box-sizing: border-box;
+  margin-bottom: 50px;
+  max-width: 274px;
 `;
 
 export const ButtonLikeCards = styled.button`
@@ -34,12 +26,6 @@ export const ButtonLikeCards = styled.button`
   cursor: pointer;
 `;
 
-export const FlexTitle = styled.div`
-  display: flex;
-  align-items: center;
-  max-width: 274px;
-`;
-
 export const Img = styled.img`
   width: 274px;
   height: 268px;
@@ -47,11 +33,9 @@ export const Img = styled.img`
   background-size: cover;
 `;
 
-export const CardList = styled.li`
-  position: relative;
-  flex-basis: calc(25% - 29px);
-  box-sizing: border-box;
-  margin-bottom: 50px;
+export const FlexTitle = styled.div`
+  display: flex;
+  align-items: center;
   max-width: 274px;
 `;
 
@@ -67,7 +51,7 @@ export const TitleCar = styled.h2`
   margin-right: 5px;
 `;
 
-export const Desc = styled.h2`
+export const Desc = styled.p`
   justify-content: center;
   font-size: 16px;
   font-style: normal;
@@ -79,7 +63,7 @@ export const Desc = styled.h2`
   margin-right: 5px;
 `;
 
-export const TitleTree = styled.h2`
+export const DescTwo = styled.p`
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -107,7 +91,7 @@ export const DescMachine = styled.p`
 export const ButtonCards = styled.button`
   cursor: pointer;
   width: 100%;
- height: 48px;
+  height: 48px;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
@@ -138,7 +122,7 @@ export const RentlaButton = styled.button`
 
 export const FilterButton = styled.button`
   cursor: pointer;
-  display:flex;
+  display: flex;
   margin-top: 100px;
   margin-left: auto;
   margin-right: auto;

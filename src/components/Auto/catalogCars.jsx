@@ -1,10 +1,10 @@
-import  Modal  from "../Modal/carsModal";
+import Modal from "../Modal/carsModal";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleFavorites } from "../../redux/Auto/Slice/favoriteSlice";
 import { openModal } from "../../redux/Auto/Slice/modalSlise";
 import { fetchCars } from "../../redux/Auto/autoOperation";
 import { FaHeart } from "react-icons/fa";
+import { toggleFavorites } from "../../redux/favorites/favoriteSlice";
 import {
   getCars,
   getError,
@@ -39,12 +39,12 @@ const CatalogCars = () => {
   const [displayCount, setdisplayCount] = useState(12);
 
   const favoritesFromStorageRaw = localStorage.getItem("favorites");
- let favoritesFromStorage;
- try {
-   favoritesFromStorage = JSON.parse(favoritesFromStorageRaw);
- } catch (error) {
-   favoritesFromStorage = [];
- }
+  let favoritesFromStorage;
+  try {
+    favoritesFromStorage = JSON.parse(favoritesFromStorageRaw);
+  } catch (error) {
+    favoritesFromStorage = [];
+  }
   const [favorites, setFavorites] = useState(favoritesFromStorage);
 
   useEffect(() => {
@@ -52,16 +52,15 @@ const CatalogCars = () => {
     dispatch(fetchCars());
   }, [dispatch]);
 
-
   useEffect(() => {
     // При изменении избранных сохраняем их в локальное хранилище
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   // фильтруем карточки по имени
-   const filteredAndSlicedCars = cars
-     .filter((car) => (filter ? car.make === filter : true))
-     .slice(0, displayCount);
+  const filteredAndSlicedCars = cars
+    .filter((car) => (filter ? car.make === filter : true))
+    .slice(0, displayCount);
 
   // при клике может появляться только 12 карточек
   const handleButtonLoadMore = () => {
@@ -83,24 +82,24 @@ const CatalogCars = () => {
   };
 
   // по клику на кнопку открываем модальное окно
-    const handleOpenModal = (car) => {
-      dispatch(openModal());
-    };
+  const handleOpenModal = (car) => {
+    dispatch(openModal());
+  };
 
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-    if (error) {
-      return <div>Error..{error}</div>;
-    }
+  if (error) {
+    return <div>Error..{error}</div>;
+  }
 
   return (
     <Containet>
       <Title>Каталог Авто</Title>
       <FlexContainer>
-        {filteredAndSlicedCars.slice(0, displayCount).map((car) => (
-          <CardList key={car.id}>
+        {filteredAndSlicedCars.slice(0, displayCount).map((car, index) => (
+          <CardList key={car.id + "abc" + index}>
             <ButtonLikeCards onClick={() => favoriteToggle(car.id)}>
               <FaHeart
                 fill={favorites.includes(car.id) ? "#fff" : "#3470ff"}
