@@ -29,6 +29,7 @@ import {
   RentlaButton,
   FilterButton,
 } from "./catalogCars.styled";
+import { nanoid } from "nanoid";
 
 const CatalogCars = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ const CatalogCars = () => {
   const filter = useSelector(getFiltered);
   const error = useSelector(getError);
   const [displayCount, setdisplayCount] = useState(12);
+  const generateId = () => nanoid();
 
   const favoritesFromStorageRaw = localStorage.getItem("favorites");
   let favoritesFromStorage;
@@ -50,6 +52,7 @@ const CatalogCars = () => {
   useEffect(() => {
     // получаем список автомобилей при монтировании компонента
     dispatch(fetchCars());
+
   }, [dispatch]);
 
   useEffect(() => {
@@ -69,13 +72,13 @@ const CatalogCars = () => {
 
   // переключение статуса избранного с помощью id используя локальный стейт
   const favoriteToggle = (carId) => {
-    const updateFavorites = favorites.includes(Number(carId))
-      ? favorites.filter((id) => id !== Number(carId))
-      : [...favorites, Number(carId)];
-
+    const updateFavorites = favorites.includes(String(carId))
+      ? favorites.filter((id) => id !== String(carId))
+      : [...favorites, String(carId)];
+    
+    
     // обновляем состояние в Redux
-    dispatch(toggleFavorites(Number(carId)));
-
+    dispatch(toggleFavorites(String(carId)));
     // обновляем состояние в локальном хранилище
     localStorage.setItem("favorites", JSON.stringify(updateFavorites));
     setFavorites(updateFavorites);
@@ -98,44 +101,47 @@ const CatalogCars = () => {
     <Containet>
       <Title>Каталог Авто</Title>
       <FlexContainer>
-        {filteredAndSlicedCars.slice(0, displayCount).map((car, index) => (
-          <CardList key={car.id + "abc" + index}>
-            <ButtonLikeCards onClick={() => favoriteToggle(car.id)}>
-              <FaHeart
-                fill={favorites.includes(Number(car.id)) ? "#fff" : "#3470ff"}
-                width="18"
-                height="18"
-              />
-            </ButtonLikeCards>
-            <Img src={car.img} alt={`${car.make} ${car.model}`} />
+        {filteredAndSlicedCars.slice(0, displayCount).map((car) => {
+          const isFavorite = favorites.includes(String(car.id));
+          return (
+            <CardList key={generateId()}>
+              <ButtonLikeCards onClick={() => favoriteToggle(car.id)}>
+                <FaHeart
+                  fill={isFavorite ? "#fff" : "#3470ff"}
+                  width="18"
+                  height="18"
+                />
+              </ButtonLikeCards>
+              <Img src={car.img} alt={`${car.make} ${car.model}`} />
 
-            <FlexTitle>
-              <TitleCar>{`${car.make},`}</TitleCar>
+              <FlexTitle>
+                <TitleCar>{`${car.make},`}</TitleCar>
 
-              <Desc>{`${car.model}`}</Desc>
+                <Desc>{`${car.model}`}</Desc>
 
-              <TitleTree>{`${car.rentalPrice}`}</TitleTree>
-            </FlexTitle>
+                <TitleTree>{`${car.rentalPrice}`}</TitleTree>
+              </FlexTitle>
 
-            <FlextTitleBox>
-              <DescMachine>{`${car.city} `}</DescMachine>
-              <DescMachine>{`${car.country} `}</DescMachine>
-              <DescMachine>{`${car.rentalConditions} `}</DescMachine>
-              <DescMachine>{`${car.accessories}`}</DescMachine>
-              <DescMachine>{`${car.functionalities}`}</DescMachine>
-              <DescMachine>{`${car.make}`}</DescMachine>
-              <DescMachine>{`${car.mileage}`}</DescMachine>
-            </FlextTitleBox>
+              <FlextTitleBox>
+                <DescMachine>{`${car.city} `}</DescMachine>
+                <DescMachine>{`${car.country} `}</DescMachine>
+                <DescMachine>{`${car.rentalConditions} `}</DescMachine>
+                <DescMachine>{`${car.accessories}`}</DescMachine>
+                <DescMachine>{`${car.functionalities}`}</DescMachine>
+                <DescMachine>{`${car.make}`}</DescMachine>
+                <DescMachine>{`${car.mileage}`}</DescMachine>
+              </FlextTitleBox>
 
-            <ButtonCards type="button" onClick={() => handleOpenModal(car)}>
-              Learn more
-            </ButtonCards>
+              <ButtonCards type="button" onClick={() => handleOpenModal(car)}>
+                Learn more
+              </ButtonCards>
 
-            <RentlaButton>
-              <a href={`tel:+380730000000`}>Rental car</a>
-            </RentlaButton>
-          </CardList>
-        ))}
+              <RentlaButton>
+                <a href={`tel:+380730000000`}>Rental car</a>
+              </RentlaButton>
+            </CardList>
+          );
+        })}
       </FlexContainer>
       {cars.length > displayCount && (
         <FilterButton type="button" onClick={handleButtonLoadMore}>
