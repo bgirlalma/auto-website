@@ -69,12 +69,12 @@ const CatalogCars = () => {
 
   // переключение статуса избранного с помощью id используя локальный стейт
   const favoriteToggle = (carId) => {
-    const updateFavorites = favorites.includes(carId)
-      ? favorites.filter((id) => id !== carId)
-      : [...favorites, carId];
+    const updateFavorites = favorites.includes(Number(carId))
+      ? favorites.filter((id) => id !== Number(carId))
+      : [...favorites, Number(carId)];
 
     // обновляем состояние в Redux
-    dispatch(toggleFavorites(carId));
+    dispatch(toggleFavorites(Number(carId)));
 
     // обновляем состояние в локальном хранилище
     localStorage.setItem("favorites", JSON.stringify(updateFavorites));
@@ -102,7 +102,7 @@ const CatalogCars = () => {
           <CardList key={car.id + "abc" + index}>
             <ButtonLikeCards onClick={() => favoriteToggle(car.id)}>
               <FaHeart
-                fill={favorites.includes(car.id) ? "#fff" : "#3470ff"}
+                fill={favorites.includes(Number(car.id)) ? "#fff" : "#3470ff"}
                 width="18"
                 height="18"
               />

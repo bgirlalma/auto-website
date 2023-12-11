@@ -1,2 +1,9 @@
-export const favoritesCars = (state) => state.favorites.cars;
-export const totalFavorites = (state) => state.favorites.cars.length;
+import { createSelector } from "reselect";
+
+export const rawFavoritesCars = (state) => state.favorites.cars;
+
+export const favoritesCars = createSelector(
+    [rawFavoritesCars],
+    (cars) =>  cars.map(Number)
+);
+
